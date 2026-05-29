@@ -8797,15 +8797,18 @@ function Library:CreateWindow(WindowInfo)
         Library.IsRobloxFocused = false
     end))
 
-	Outer:GetPropertyChangedSignal("Size"):Connect(function()
-		local currentWidth = Outer.Size.X.Offset
+		-- ==========================================
+	-- 🔄 LIVE RESPONSIVE TABS (100% Passend für deine Library)
+	-- ==========================================
+	Frame:GetPropertyChangedSignal("Size"):Connect(function()
+		local currentWidth = Frame.Size.X.Offset
 		
 		if currentWidth < 450 then
-			TabOuter.Size = UDim2.new(0, 45, 1, -36)
-			ContainerOuter.Position = UDim2.new(0, 53, 0, 30)
-			ContainerOuter.Size = UDim2.new(1, -59, 1, -36)
+			Window.TabOuter.Size = UDim2.new(0, 45, 1, -36)
+			Window.ContainerOuter.Position = UDim2.new(0, 53, 0, 30)
+			Window.ContainerOuter.Size = UDim2.new(1, -59, 1, -36)
 			
-			for _, child in pairs(TabOuter:GetDescendants()) do
+			for _, child in pairs(Window.TabOuter:GetDescendants()) do
 				if child:IsA("TextLabel") then
 					child.Visible = false
 				elseif child:IsA("ImageLabel") then
@@ -8814,11 +8817,11 @@ function Library:CreateWindow(WindowInfo)
 				end
 			end
 		else
-			TabOuter.Size = UDim2.new(0, 125, 1, -36)
-			ContainerOuter.Position = UDim2.new(0, 137, 0, 30)
-			ContainerOuter.Size = UDim2.new(1, -143, 1, -36)
+			Window.TabOuter.Size = UDim2.new(0, 125, 1, -36)
+			Window.ContainerOuter.Position = UDim2.new(0, 137, 0, 30)
+			Window.ContainerOuter.Size = UDim2.new(1, -143, 1, -36)
 			
-			for _, child in pairs(TabOuter:GetDescendants()) do
+			for _, child in pairs(Window.TabOuter:GetDescendants()) do
 				if child:IsA("TextLabel") then
 					child.Visible = true
 				elseif child:IsA("ImageLabel") then
