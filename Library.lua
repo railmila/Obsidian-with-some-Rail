@@ -248,21 +248,16 @@ if RunService:IsStudio() then
         Library.IsMobile = false
         Library.OriginalMinSize = Vector2.new(200, 250)
     end
-else
-    pcall(function()
-        Library.DevicePlatform = UserInputService:GetPlatform()
-    end)
-    Library.IsMobile = (Library.DevicePlatform == Enum.Platform.Android or Library.DevicePlatform == Enum.Platform.IOS)
-    Library.OriginalMinSize = Library.IsMobile and Vector2.new(200, 200) or Vector2.new(200, 250)
-end
+    else
+        pcall(function()
+            Library.DevicePlatform = UserInputService:GetPlatform()
+        end)
+        Library.IsMobile = (Library.DevicePlatform == Enum.Platform.Android or Library.DevicePlatform == Enum.Platform.IOS)
+        Library.OriginalMinSize = Library.IsMobile and Vector2.new(200, 200) or Vector2.new(250, 250) -- Angepasst für kleineres UI
+    end
 
-else
-    pcall(function()
-        Library.DevicePlatform = UserInputService:GetPlatform()
-    end)
-    Library.IsMobile = (Library.DevicePlatform == Enum.Platform.Android or Library.DevicePlatform == Enum.Platform.IOS)
-    Library.OriginalMinSize = Library.IsMobile and Vector2.new(480, 240) or Vector2.new(480, 360)
-end
+
+
 
 local Templates = {
     --// UI \\-
