@@ -8797,6 +8797,39 @@ function Library:CreateWindow(WindowInfo)
         Library.IsRobloxFocused = false
     end))
 
+	Outer:GetPropertyChangedSignal("Size"):Connect(function()
+		local currentWidth = Outer.Size.X.Offset
+		
+		if currentWidth < 450 then
+			TabOuter.Size = UDim2.new(0, 45, 1, -36)
+			ContainerOuter.Position = UDim2.new(0, 53, 0, 30)
+			ContainerOuter.Size = UDim2.new(1, -59, 1, -36)
+			
+			for _, child in pairs(TabOuter:GetDescendants()) do
+				if child:IsA("TextLabel") then
+					child.Visible = false
+				elseif child:IsA("ImageLabel") then
+					child.Position = UDim2.new(0.5, 0, 0.5, 0)
+					child.AnchorPoint = Vector2.new(0.5, 0.5)
+				end
+			end
+		else
+			TabOuter.Size = UDim2.new(0, 125, 1, -36)
+			ContainerOuter.Position = UDim2.new(0, 137, 0, 30)
+			ContainerOuter.Size = UDim2.new(1, -143, 1, -36)
+			
+			for _, child in pairs(TabOuter:GetDescendants()) do
+				if child:IsA("TextLabel") then
+					child.Visible = true
+				elseif child:IsA("ImageLabel") then
+					child.Position = UDim2.new(0, 5, 0.5, 0)
+					child.AnchorPoint = Vector2.new(0, 0.5)
+				end
+			end
+		end
+	end)
+
+
     return Window
 end
 
